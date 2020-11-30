@@ -23,7 +23,7 @@ mvn clean install -DskipTests'''
         sh '''source ~/.bash_profile
 
 cd glen-eureka
-
+docker login 47.102.132.143:9001 -u admin -p Glen19960111
 docker build -t glen-eureka:v$BUILD_ID .
 docker tag glen-eureka:v$BUILD_ID 47.102.132.143:9001/docker-test/glen-eureka:v$BUILD_ID
 docker push http://47.102.132.143:9001/docker-test/glen-eureka:v$BUILD_ID
