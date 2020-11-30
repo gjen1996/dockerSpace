@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'worker_node1'
-    }
-
-  }
+  agent any
   stages {
     stage('clone') {
       steps {
@@ -25,18 +20,28 @@ mvn clean install -DskipTests'''
 
     stage('image') {
       steps {
-        sh '''cd glen-eureka
+        sh '''source ~/.bash_profile
 
-docker build -t glen-eureka:v0.0.2-SNAPSHOT .
+cd glen-eureka
 
-docker tag glen-eureka:v0.0.2-SNAPSHOT 192.168.43.166/docker-test/glen-eureka:v0.0.2-SNAPSHOT
+# docker build -t glen-eureka:v$BUILD_ID .
+# docker tag glen-eureka:v$BUILD_ID 192.168.43.166/docker-test/glen-eureka:v$BUILD_ID
+# docker push 192.168.43.166/docker-test/glen-eureka:v$BUILD_ID
+# docker rmi glen-eureka:v$BUILD_ID'''
+      }
+    }
 
-docker push 192.168.43.166/docker-test/glen-eureka:v0.0.2-SNAPSHOT'''
+    stage('deploy/upgrade') {
+      steps {
+        sh '''image="nginx:1.12.0"
+name="nginx"
+url=http://localhost:50020/api/rancherapi/deployUpgrade/v1
+curl -i -X POST -H \'Content-type\':\'application/json\' -d \'{"image":"\'$image\'","name":"\'$name\'"}\' http://localhost:50020/api/rancherapi/deployUpgrade/v1'''
       }
     }
 
   }
   environment {
-    credentialsId = '1c0b2feb-65f5-49af-9c77-2752a11fffbe'
+    credentialsId = '73159fef-c482-44d0-81ea-35577d50a3b3'
   }
 }
