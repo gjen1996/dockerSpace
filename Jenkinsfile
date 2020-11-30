@@ -24,16 +24,16 @@ mvn clean install -DskipTests'''
 
 cd glen-eureka
 
-# docker build -t glen-eureka:v$BUILD_ID .
-# docker tag glen-eureka:v$BUILD_ID 192.168.43.166/docker-test/glen-eureka:v$BUILD_ID
-# docker push 192.168.43.166/docker-test/glen-eureka:v$BUILD_ID
-# docker rmi glen-eureka:v$BUILD_ID'''
+docker build -t glen-eureka:v$BUILD_ID .
+docker tag glen-eureka:v$BUILD_ID 47.102.132.143:9001/docker-test/glen-eureka:v$BUILD_ID
+docker push 47.102.132.143:9001/docker-test/glen-eureka:v$BUILD_ID
+docker rmi glen-eureka:v$BUILD_ID'''
       }
     }
 
     stage('deploy/upgrade') {
       steps {
-        sh '''image="nginx:1.12.0"
+        sh '''image="47.102.132.143:9001/docker-test/glen-eureka:v$BUILD_ID"
 name="nginx"
 url=http://localhost:50020/api/rancherapi/deployUpgrade/v1
 curl -i -X POST -H \'Content-type\':\'application/json\' -d \'{"image":"\'$image\'","name":"\'$name\'"}\' http://localhost:50020/api/rancherapi/deployUpgrade/v1'''
