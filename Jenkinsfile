@@ -26,8 +26,8 @@ mvn clean install -DskipTests'''
 -Dsonar.login=admin
 -Dsonar.password=admin
 -Dsonar.language=java 
--Dsonar.projectKey=glen-eureka
--Dsonar.projectName=glen-eureka
+-Dsonar.projectKey=test-sonarqube
+-Dsonar.projectName=test-sonarqube
 -Dsonar.projectVersion=$BUILD_NUMBER  
 -Dsonar.sources=src/ 
 -Dsonar.sourceEncoding=UTF-8 
