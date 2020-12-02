@@ -21,18 +21,7 @@ mvn clean install -DskipTests'''
     stage('sonar') {
       steps {
         sh '''cd glen-eureka
-/Users/gaiyucheng/software/sonarQube/sonar-scanner-4.5.0.2216-macosx/bin/sonar-scanner -X 
--Dsonar.host.url=${SONAR_HOST_URL} 
--Dsonar.login=admin
--Dsonar.password=admin
--Dsonar.language=java
--Dsonar.projectKey=test-sonarqube
--Dsonar.projectName=test-sonarqube
--Dsonar.projectVersion=$BUILD_NUMBER
--Dsonar.sources=src/
--Dsonar.sourceEncoding=UTF-8
--Dsonar.java.binaries=target/
--Dsonar.exclusions=src/test/**
+/Users/gaiyucheng/software/sonarQube/sonar-scanner-4.5.0.2216-macosx/bin/sonar-scanner -X -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=admin -Dsonar.password=admin -Dsonar.language=java -Dsonar.projectKey=test-sonarqube -Dsonar.projectName=test-sonarqube -Dsonar.projectVersion=$BUILD_NUMBER -Dsonar.sources=src/ -Dsonar.sourceEncoding=UTF-8 -Dsonar.java.binaries=target/ -Dsonar.exclusions=src/test/**
 '''
       }
     }
