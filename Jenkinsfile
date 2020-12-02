@@ -24,9 +24,11 @@ mvn clean install -DskipTests'''
           sh '''cd glen-eureka
 /Users/gaiyucheng/software/sonarQube/sonar-scanner-4.5.0.2216-macosx/bin/sonar-scanner -X 
 -Dsonar.host.url=${SONAR_HOST_URL} 
+-Dsonar.login=admin
+-Dsonar.password=admin
 -Dsonar.language=java 
--Dsonar.projectKey=workflow
--Dsonar.projectName=workflow 
+-Dsonar.projectKey=glen-eureka
+-Dsonar.projectName=glen-eureka
 -Dsonar.projectVersion=$BUILD_NUMBER  
 -Dsonar.sources=src/ 
 -Dsonar.sourceEncoding=UTF-8 
