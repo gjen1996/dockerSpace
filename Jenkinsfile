@@ -22,7 +22,7 @@ mvn clean install -DskipTests'''
       steps {
         withSonarQubeEnv('SonarQube') {
           sh '''cd glen-eureka
-${sonarqubeScannerHome}/bin/sonar-scanner -X 
+${sonar_scanner}/bin/sonar-scanner -X 
 -Dsonar.host.url=${SONAR_HOST_URL} 
 -Dsonar.language=java 
 -Dsonar.projectKey=workflow
