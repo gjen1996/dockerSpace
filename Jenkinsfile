@@ -20,12 +20,11 @@ mvn clean install -DskipTests'''
 
     stage('sonar') {
       steps {
-        withSonarQubeEnv('SonarQube') {
+        withSonarQubeEnv(installationName: 'SonarQube', credentialsId: '2e35e422-febf-4af6-b1e5-455afb511042') {
           sh '''cd glen-eureka
 /Users/gaiyucheng/software/sonarQube/sonar-scanner-4.5.0.2216-macosx/bin/sonar-scanner -X 
 -Dsonar.host.url=${SONAR_HOST_URL} 
--Dsonar.login=admin
--Dsonar.password=admin
+-Dsonar.login=2e35e422-febf-4af6-b1e5-455afb511042
 -Dsonar.language=java 
 -Dsonar.projectKey=glen-eureka
 -Dsonar.projectName=glen-eureka
