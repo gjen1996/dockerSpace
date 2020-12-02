@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('clone') {
       steps {
-        git(url: 'https://github.com/gjen1996/dockerSpace.git', branch: 'master', changelog: true)
+        git(url: 'https://github.com/gjen1996/dockerSpace.git', changelog: true)
       }
     }
 
