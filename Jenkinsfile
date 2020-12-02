@@ -20,7 +20,7 @@ mvn clean install -DskipTests'''
 
     stage('sonar') {
       steps {
-        withSonarQubeEnv(installationName: 'ScanQube', credentialsId: '2e35e422-febf-4af6-b1e5-455afb511042') {
+        withSonarQubeEnv('SonarQube') {
           sh '''cd glen-eureka
 ${sonarqubeScannerHome}/bin/sonar-scanner -X 
 -Dsonar.host.url=${SONAR_HOST_URL} 
